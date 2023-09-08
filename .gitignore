@@ -1,1 +1,3 @@
+# Ignore all .exe files in the "Data Structures & Algorithms Master Course [SUPREME 2.0 Batch]" folder and its subfolders
+Data Structures & Algorithms Master Course [SUPREME 2.0 Batch]/**/**/*.exe
 Practice/
