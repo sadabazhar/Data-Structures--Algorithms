@@ -12,19 +12,21 @@ int Linearsearch(int arr[], int size){
 }
 
 //Using mathematic falmulas
+// elements must be started from 0
 
-int Find(int arr[], int size){
-    int sum=0;
-    for(int i=0 ; i<size ; i++){
-        sum = sum+arr[i];
+int Find(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum = sum + arr[i];
     }
-    int TotalSum = (size*(1+size))/2;
-    int ans = TotalSum -sum;
+    int TotalSum = ((size + 1) * size) / 2; // Corrected the formula here
+    int ans = TotalSum - sum;
     return ans;
 }
 
+
 int main(){
-    int arr[] = {0,1,2,4};
+    int arr[] = {0,1,2,4,5};
     cout<<"Missing Number is "<<Linearsearch(arr, 4)<<endl;
     cout<<"Missing Number is "<<Find(arr, 4);
     return 0;  
