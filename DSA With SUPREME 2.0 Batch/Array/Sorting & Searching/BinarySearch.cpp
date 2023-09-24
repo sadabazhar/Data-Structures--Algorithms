@@ -5,22 +5,24 @@
 #include<algorithm> // For using sorting function
 using namespace std;
 
-int Search(vector<int> &arr, int key){
-    int start = 0;
-    int end = arr.size()-1;
-    while(start<=end){
-        int mid = (start+end) /2;
-
-        if(arr[mid] == key){
-            return mid;
-        }else if(arr[mid] > key){
-            end = mid -1;
-        }else if(arr[mid] < key){
-            start = mid +1;
+int Search(vector<int> &nums, int target){
+        int left = 0;
+        int right = nums.size() - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (nums[mid] == target) {
+                return mid; // Target found
+            } else if (nums[mid] < target) {
+                left = mid + 1; // Search in the right half
+            } else {
+                right = mid - 1; // Search in the left half
+            }
         }
+        
+        return -1; // Target not found
     }
-    return -1;
-}
 
 int main(){
     vector <int> arr = {12, 343, 64, 61, 72, 3};
