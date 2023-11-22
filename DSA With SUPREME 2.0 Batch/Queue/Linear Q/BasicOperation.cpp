@@ -17,11 +17,12 @@ class Queue{
 
     //Basic Operations of a Queue
     void Enqueue(int data){
-        if (rear == size-1) // Case 1: Queue full
+        if (Full()) // Case 1: Queue full
         {
             cout<<"Queue is full"<<endl;
             return;
-        }else if (front == -1) // Case 2: Queue empty
+        }
+        else if (front == -1) // Case 2: Queue empty
         {
             front++;
             rear++;
@@ -36,7 +37,17 @@ class Queue{
         if (front == -1) // Case 1: Queue Empty
         {
             cout<<"Queue is empty"<<endl;
-        }else{           // Case 2: Normal
+            return;
+        }
+        else if (front == rear) // Case 2: Single element -> Empty Q
+        {
+            arr[front] = 0;
+            // set front & rear = 0 (For reusing)
+            front = -1;
+            rear = -1;
+        }
+        
+        else{           // Case 2: Normal
             arr[front] = 0;
             front++;
         }
@@ -44,7 +55,7 @@ class Queue{
 
     void Print(){
 
-        if (front == -1 || front > rear) //Exception case
+        if (Empty()) //Exception case
         {
             cout<<"No elements are present"<<endl;
         }else{
@@ -54,6 +65,35 @@ class Queue{
                 cout<<arr[i]<<" ";
             }cout<<endl;
         }
+    }
+
+    bool Empty(){
+        if (front == -1 || front > rear)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool Full(){
+        if (rear >= size-1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    int Size(){
+        if(Empty()) return 0;
+        else return rear-front+1;
+    }
+
+    int GetFront(){
+        return arr[front];
+    }
+
+    int GetRear(){
+        return arr[rear];
     }
 };
 
@@ -74,5 +114,10 @@ int main(){
     Q.Dequeue();
     cout<<"---After---"<<endl;
     Q.Print();
+    cout<<"Size of Queue: "<<Q.Size()<<endl;
+    Q.Enqueue(6);
+    cout<<"---After & After---"<<endl;
+    Q.Print();
+    cout<<"Size of Queue: "<<Q.Size()<<endl;
     return 0;
 }
